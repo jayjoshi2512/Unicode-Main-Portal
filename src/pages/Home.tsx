@@ -435,21 +435,61 @@ export default function Home() {
             </div>
 
             {/* MERN Stack card */}
-            <div className="border border-border rounded-sm p-8 flex flex-col gap-4 hover:border-brand transition-colors group bg-brand">
-              <span className="label-tag text-accent!">Internship</span>
-              <h3 className="text-2xl font-black tracking-tight text-white">
+            <div className="border border-border rounded-sm p-8 flex flex-col gap-4 hover:border-brand transition-colors group">
+              <span className="label-tag">Internship</span>
+              <h3 className="text-2xl font-black tracking-tight">
                 MERN
                 <br />
                 Stack
               </h3>
-              <p className="text-white/60 text-sm leading-relaxed flex-1">
+              <p className="text-muted text-sm leading-relaxed flex-1">
                 3-month full-stack program — MongoDB, Express.js, React.js &amp;
                 Node.js. Build, deploy, and ship real-world applications end to
                 end.
               </p>
-              <div className="flex items-center justify-between pt-2 border-t border-white/10">
+              <div className="flex items-center justify-between pt-2 border-t border-border">
                 <span className="text-xs font-semibold text-accent uppercase tracking-widest">
                   3 Months
+                </span>
+              </div>
+            </div>
+
+            {/* Django Web Development card */}
+            <div className="border border-border rounded-sm p-8 flex flex-col gap-4 hover:border-brand transition-colors group">
+              <span className="label-tag">Internship</span>
+              <h3 className="text-2xl font-black tracking-tight">
+                Django
+                <br />
+                Web Development
+              </h3>
+              <p className="text-muted text-sm leading-relaxed flex-1">
+                Comprehensive backend development with Django — learn project
+                setup, ORM, authentication, forms, admin panel, and deploy
+                production applications.
+              </p>
+              <div className="flex items-center justify-between pt-2 border-t border-border">
+                <span className="text-xs font-semibold text-accent uppercase tracking-widest">
+                  60 Hours
+                </span>
+              </div>
+            </div>
+
+            {/* UI Design with Figma card */}
+            <div className="border border-border rounded-sm p-8 flex flex-col gap-4 hover:border-brand transition-colors group">
+              <span className="label-tag">Internship</span>
+              <h3 className="text-2xl font-black tracking-tight">
+                UI Design
+                <br />
+                with Figma
+              </h3>
+              <p className="text-muted text-sm leading-relaxed flex-1">
+                Master modern UI design using Figma — from wireframing and
+                layout planning to prototyping, components, and responsive
+                design for web &amp; mobile.
+              </p>
+              <div className="flex items-center justify-between pt-2 border-t border-border">
+                <span className="text-xs font-semibold text-accent uppercase tracking-widest">
+                  60 Hours
                 </span>
               </div>
             </div>
