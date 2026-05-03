@@ -11,6 +11,8 @@ const PROGRAMS = [
     id: "html-tailwind",
     title: "HTML5 & Tailwind CSS Fundamentals",
     duration: "4 Weeks",
+    isActive: false,
+    mode: "On-site",
     // desc: "Learn modern web development with HTML5 and Tailwind CSS. Master layout, responsive design, and creating beautiful interfaces.",
     curriculum: [
       "HTML5 Fundamentals",
@@ -25,6 +27,8 @@ const PROGRAMS = [
     id: "advance-php",
     title: "Web Development & API Integration",
     duration: "60 Hours",
+    isActive: true,
+    mode: "On-site",
     // desc: "Master advanced PHP techniques with real-world applications — API integration, payment gateways, and dynamic content generation.(Diploma Students)",
     curriculum: [
       "Regular expressions",
@@ -43,6 +47,8 @@ const PROGRAMS = [
     id: "mern-stack",
     title: "MERN Stack Development",
     duration: "3 Months",
+    isActive: false,
+    mode: "On-site",
     // desc: "A comprehensive full-stack internship covering MongoDB, Express.js, React.js, and Node.js — build and deploy production-ready web applications.",
     curriculum: [
       "Node.js & Express.js fundamentals",
@@ -59,6 +65,8 @@ const PROGRAMS = [
     id: "django-web",
     title: "Django Web Development",
     duration: "60 Hours",
+    isActive: true,
+    mode: "Online",
     // desc: "Master backend development with Django framework — learn project setup, ORM, authentication, and build complete web applications.",
     curriculum: [
       "Introduction to Django",
@@ -83,6 +91,8 @@ const PROGRAMS = [
     id: "figma-design",
     title: "UI Designing with Figma",
     duration: "60 Hours",
+    isActive: true,
+    mode: "Online",
     // desc: "Learn modern UI design principles using Figma — from wireframing to prototyping, creating professional designs for web and mobile.",
     curriculum: [
       "Introduction to Figma",
@@ -101,6 +111,29 @@ const PROGRAMS = [
       "Collaboration and sharing in Figma",
       "Exporting design assets",
       "Final UI project",
+    ],
+  },
+  {
+    id: "ai-tools",
+    title: "AI Tools & Automation with Real Use Cases",
+    duration: "60 Hours",
+    isActive: true,
+    mode: "Online",
+    curriculum: [
+      "Introduction to AI, Automation, and SaaS",
+      "Real-world AI use cases (India-focused)",
+      "Prompt engineering fundamentals",
+      "Structured prompting and role-based prompts",
+      "Controlling outputs (tables, JSON, formatted responses)",
+      "Using AI for content creation (posts, captions, branding)",
+      "Social media automation using AI tools",
+      "Using AI for decision making and basic data analysis",
+      "AI with Excel / Google Sheets (basic level)",
+      "Building simple no-code AI workflows",
+      "Creating chatbot / auto-reply systems",
+      "Designing a basic AI solution (idea to prototype)",
+      "Writing system logic using structured files (.md concept)",
+      "Final project based on real-world use case",
     ],
   },
 ];
@@ -174,17 +207,19 @@ export default function Internship() {
               <div
                 key={prog.id}
                 className={[
-                  "rounded-sm border transition-all duration-300 overflow-hidden bg-white border-border hover:border-brand",
+                  "rounded-sm border transition-all duration-300 overflow-hidden bg-white",
+                  prog.isActive ? "border-border hover:border-brand" : "border-gray-200 grayscale opacity-70",
                 ].join(" ")}
               >
                 <div className="p-8">
-                  <div className="flex items-center justify-between mb-5">
-                    <span className={["label-tag"].join(" ")}>Internship</span>
-                    <div
-                      className={[
-                        "flex items-center gap-1.5 text-xs font-semibold text-muted",
-                      ].join(" ")}
-                    >
+                  <div className="flex flex-wrap items-center gap-2 mb-5">
+                    <span className={["px-2 py-1 text-[0.65rem] font-bold uppercase tracking-widest border rounded-sm", prog.isActive ? "text-green-600 bg-green-50 border-green-200" : "text-gray-500 bg-gray-50 border-gray-200"].join(" ")}>
+                      {prog.isActive ? "Active" : "Inactive"}
+                    </span>
+                    <span className="px-2 py-1 text-[0.65rem] font-bold uppercase tracking-widest text-brand border border-brand/20 bg-brand/5 rounded-sm">
+                      {prog.mode}
+                    </span>
+                    <div className="ml-auto flex items-center gap-1.5 text-xs font-semibold text-muted">
                       <Clock size={12} />
                       {prog.duration}
                     </div>

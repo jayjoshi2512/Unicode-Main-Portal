@@ -135,7 +135,7 @@ export default function Navbar() {
           <X size={24} />
         </button>
 
-        <nav className="flex flex-col justify-center h-full px-10 gap-8">
+        <nav className="flex flex-col justify-center h-full px-10 gap-4 sm:gap-6 md:gap-8 overflow-y-auto pt-20 pb-10">
           {NAV_ITEMS.map(({ label, path }, i) => (
             <NavLink
               key={path}
@@ -144,14 +144,14 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
               className={({ isActive }) =>
                 [
-                  "text-4xl font-black text-white/80 hover:text-white transition-all duration-200",
-                  "border-b border-white/10 pb-4",
+                  "text-2xl sm:text-3xl md:text-4xl font-black text-white/80 hover:text-white transition-all duration-200",
+                  "border-b border-white/10 pb-3 md:pb-4",
                   isActive ? "text-white!" : "",
                   isMenuOpen ? `animate-fade-up delay-${(i + 1) * 100}` : "",
                 ].join(" ")
               }
             >
-              <span className="text-accent text-base font-normal mr-3">
+              <span className="text-accent text-sm md:text-base font-normal mr-3">
                 0{i + 1}
               </span>
               {label}
