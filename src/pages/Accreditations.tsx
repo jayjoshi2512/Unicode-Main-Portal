@@ -3,8 +3,8 @@ import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 
 const ACCREDITATIONS = [
   { id: 1, title: "Sardar Vallabhbhai Patel National Service Award", image: "/Accreditations/Sardar Vallabhbhai Patel National Service Award 2026_20260428_171732_0000.png", category: "Awards" },
-  { id: 2, title: "National Award 1", image: "/Accreditations/award1.jpg.jpeg", category: "Awards" },
-  { id: 3, title: "National Award 2", image: "/Accreditations/award2.jpg.jpeg", category: "Awards" },
+  { id: 2, title: "District Award 1", image: "/Accreditations/award1.jpg.jpeg", category: "Awards" },
+  { id: 3, title: "District Award 2", image: "/Accreditations/award2.jpg.jpeg", category: "Awards" },
   { id: 5, title: "MSME UDYAM Registration", image: "/Accreditations/UDYAM.jpeg", category: "MSME" },
   { id: 6, title: "ISO Certification", image: "/Accreditations/UNICODE TECHNOLAB FINAL REGISTRSTION COPY.jpeg", category: "ISO" },
   { id: 7, title: "Accreditation 004", image: "/Accreditations/004.jpg.jpeg", category: "Certificates" },
