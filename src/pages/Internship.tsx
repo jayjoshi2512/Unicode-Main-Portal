@@ -1,5 +1,6 @@
-import { useEffect } from "react";
-import { CheckCircle, GraduationCap, Users, Award, Clock } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { CheckCircle, GraduationCap, Users, Award, Clock, ArrowRight, Send } from "lucide-react";
 import InternshipTable from "@/components/internship/InternshipTable";
 import {
   INTERNSHIP_COLUMNS,
@@ -88,32 +89,6 @@ const PROGRAMS = [
     ],
   },
   {
-    id: "figma-design",
-    title: "UI Designing with Figma",
-    duration: "60 Hours",
-    isActive: true,
-    mode: "Online",
-    // desc: "Learn modern UI design principles using Figma — from wireframing to prototyping, creating professional designs for web and mobile.",
-    curriculum: [
-      "Introduction to Figma",
-      "Figma interface and tools",
-      "Wireframing basics",
-      "Layout planning and page structure",
-      "UI design principles",
-      "Typography and color usage",
-      "Spacing and alignment",
-      "Components and reusable elements",
-      "Auto layout",
-      "Responsive design basics",
-      "Prototyping and screen linking",
-      "Designing for web and mobile",
-      "Icons, images, and asset management",
-      "Collaboration and sharing in Figma",
-      "Exporting design assets",
-      "Final UI project",
-    ],
-  },
-  {
     id: "ai-tools",
     title: "AI Tools & Automation with Real Use Cases",
     duration: "60 Hours",
@@ -157,9 +132,81 @@ const BENEFITS = [
 ];
 
 export default function Internship() {
+  const location = useLocation();
+  const [form, setForm] = useState({
+    internshipType: location.state?.internshipType || "",
+    name: "",
+    gender: "",
+    phone: "",
+    email: "",
+    college: "",
+    city: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (location.hash === "#application-form") {
+      setTimeout(() => {
+        const el = document.getElementById("application-form");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, [location]);
+
+  const handleChange = (e: any) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    setError("");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+
+    // Domain validation
+    const emailLower = form.email.toLowerCase();
+    if (
+      !emailLower.endsWith("@gmail.com") &&
+      !emailLower.endsWith("@outlook.com") &&
+      !emailLower.endsWith("@yahoo.com")
+    ) {
+      setError("Please use a valid Gmail, Outlook, or Yahoo email address.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await fetch("https://www.internship.unicodetechnolab.com/API/apply.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSubmitted(true);
+        setForm({
+          internshipType: "",
+          name: "",
+          gender: "",
+          phone: "",
+          email: "",
+          college: "",
+          city: "",
+        });
+      } else {
+        setError(data.message || "Something went wrong.");
+      }
+    } catch (err) {
+      setError("Failed to submit application.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <main>
@@ -252,20 +299,24 @@ export default function Internship() {
                     ))}
                   </ul>
 
-                  {/* <a
-                    href="#application-form"
-                    className={[
-                      "inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-colors",
-                      i === 0
-                        ? "text-accent hover:text-white"
-                        : "text-brand hover:text-accent",
-                    ].join(" ")}
-                    onClick={() => {
-                      setForm((p) => ({ ...p, internshipType: prog.id }));
-                    }}
-                  >
-                    Apply Now <ArrowRight size={13} />
-                  </a> */}
+                  {prog.isActive ? (
+                    <a
+                      href="#application-form"
+                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-colors text-brand hover:text-accent mt-4"
+                      onClick={() => {
+                        setForm((p) => ({ ...p, internshipType: prog.id }));
+                      }}
+                    >
+                      Apply Now <ArrowRight size={13} />
+                    </a>
+                  ) : (
+                    <button
+                      disabled
+                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400 cursor-not-allowed mt-4"
+                    >
+                      Apply Now <ArrowRight size={13} />
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
@@ -315,7 +366,8 @@ export default function Internship() {
       </section>
 
       {/* ── Application Form ── */}
-      {/* <section id="application-form" className="section-pad bg-bg">
+      {/* ── Application Form ── */}
+      <section id="application-form" className="section-pad bg-bg">
         <div className="max-w-3xl mx-auto container-pad">
           <div className="mb-10">
             <p className="label-tag mb-3">Start Your Journey</p>
@@ -333,14 +385,22 @@ export default function Internship() {
             </div>
           )}
 
+          {error && (
+            <div className="mb-6 flex items-center gap-3 bg-red-50 border border-red-200 rounded-sm p-4">
+              <p className="text-sm text-red-800 font-medium">
+                {error}
+              </p>
+            </div>
+          )}
+
           <div className="bg-surface border border-border rounded-sm p-8">
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-ink mb-3">
                   Internship Program
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {PROGRAMS.map((prog) => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {PROGRAMS.filter(p => p.isActive).map((prog, index) => (
                     <label
                       key={prog.id}
                       className={[
@@ -348,6 +408,7 @@ export default function Internship() {
                         form.internshipType === prog.id
                           ? "border-brand bg-white shadow-sm"
                           : "border-border bg-white hover:border-brand/40",
+                        index === 2 ? "sm:col-span-2" : "",
                       ].join(" ")}
                     >
                       <input
@@ -356,14 +417,15 @@ export default function Internship() {
                         value={prog.id}
                         checked={form.internshipType === prog.id}
                         onChange={handleChange}
-                        className="mt-0.5 accent-brand"
+                        className="mt-0.5 accent-brand hidden"
+                        required
                       />
-                      <div>
+                      <div className="flex-1 flex items-center gap-3">
+                        <div className={["w-4 h-4 rounded-full border flex items-center justify-center shrink-0 transition-colors", form.internshipType === prog.id ? "border-brand" : "border-gray-300"].join(" ")}>
+                           {form.internshipType === prog.id && <div className="w-2 h-2 rounded-full bg-brand" />}
+                        </div>
                         <p className="text-sm font-semibold text-ink">
                           {prog.title}
-                        </p>
-                        <p className="text-xs text-muted mt-0.5">
-                          {prog.duration}
                         </p>
                       </div>
                     </label>
@@ -371,104 +433,132 @@ export default function Internship() {
                 </div>
               </div>
 
-              
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-ink mb-3">
+                  Gender
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  {["Male", "Female", "Other"].map((g) => (
+                    <label
+                      key={g}
+                      className={[
+                        "flex items-center gap-2 px-6 py-3 rounded-sm border cursor-pointer transition-all",
+                        form.gender === g
+                          ? "border-brand bg-brand/5 text-brand"
+                          : "border-border bg-white hover:border-brand/40 text-muted",
+                      ].join(" ")}
+                    >
+                      <input
+                        type="radio"
+                        name="gender"
+                        value={g}
+                        checked={form.gender === g}
+                        onChange={handleChange}
+                        className="hidden"
+                        required
+                      />
+                      <span className="text-sm font-semibold">{g}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="field">
-                  <label>Full Name</label>
+                <div className="field flex flex-col gap-1">
+                  <label className="text-xs font-bold uppercase tracking-widest text-ink mb-1">Full Name</label>
                   <input
                     name="name"
                     value={form.name}
                     onChange={handleChange}
                     placeholder="Your full name"
+                    className="p-3 border border-border rounded-sm bg-white focus:outline-none focus:border-brand"
                     required
                   />
                 </div>
-                <div className="field">
-                  <label>Email Address</label>
+                <div className="field flex flex-col gap-1">
+                  <label className="text-xs font-bold uppercase tracking-widest text-ink mb-1">Email Address</label>
                   <input
                     name="email"
                     type="email"
                     value={form.email}
                     onChange={handleChange}
                     placeholder="your@email.com"
+                    className={[
+                      "p-3 border rounded-sm bg-white focus:outline-none focus:border-brand transition-colors",
+                      form.email && !form.email.toLowerCase().endsWith("@gmail.com") && !form.email.toLowerCase().endsWith("@outlook.com") && !form.email.toLowerCase().endsWith("@yahoo.com")
+                        ? "border-red-400 focus:border-red-500"
+                        : "border-border"
+                    ].join(" ")}
                     required
                   />
+                  {form.email && !form.email.toLowerCase().endsWith("@gmail.com") && !form.email.toLowerCase().endsWith("@outlook.com") && !form.email.toLowerCase().endsWith("@yahoo.com") ? (
+                    <p className="text-xs text-red-500 font-medium mt-1">
+                      Invalid domain. Only Gmail, Outlook, and Yahoo are allowed.
+                    </p>
+                  ) : (
+                    <p className="text-xs text-muted mt-1">
+                      Note: Only Gmail, Outlook, and Yahoo mail domains are valid.
+                    </p>
+                  )}
                 </div>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="field">
-                  <label>Phone Number</label>
+                <div className="field flex flex-col gap-1">
+                  <label className="text-xs font-bold uppercase tracking-widest text-ink mb-1">Contact Number</label>
                   <input
                     name="phone"
                     value={form.phone}
                     onChange={handleChange}
                     placeholder="+91 XXXXX XXXXX"
+                    className="p-3 border border-border rounded-sm bg-white focus:outline-none focus:border-brand"
                     required
                   />
                 </div>
-                <div className="field">
-                  <label>College / University</label>
+                <div className="field flex flex-col gap-1">
+                  <label className="text-xs font-bold uppercase tracking-widest text-ink mb-1">College / University</label>
                   <input
                     name="college"
                     value={form.college}
                     onChange={handleChange}
                     placeholder="Institution name"
+                    className="p-3 border border-border rounded-sm bg-white focus:outline-none focus:border-brand"
                     required
                   />
                 </div>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="field">
-                  <label>Current Course / Degree</label>
+                <div className="field flex flex-col gap-1">
+                  <label className="text-xs font-bold uppercase tracking-widest text-ink mb-1">City</label>
                   <input
-                    name="course"
-                    value={form.course}
+                    name="city"
+                    value={form.city}
                     onChange={handleChange}
-                    placeholder="e.g. B.E. Computer"
+                    placeholder="Your City"
+                    className="p-3 border border-border rounded-sm bg-white focus:outline-none focus:border-brand"
                     required
                   />
                 </div>
-                <div className="field">
-                  <label>Current Semester</label>
-                  <select
-                    name="semester"
-                    value={form.semester}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">Select semester</option>
-                    {SEMESTERS.map((s) => (
-                      <option key={s} value={s}>
-                        {s} Semester
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="field">
-                <label>Additional Message (optional)</label>
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder="Anything you'd like us to know..."
-                  rows={4}
-                />
               </div>
 
               <button
                 type="submit"
-                className="btn-primary w-full justify-center py-3.5"
+                disabled={
+                  loading ||
+                  (form.email.length > 0 &&
+                    !form.email.toLowerCase().endsWith("@gmail.com") &&
+                    !form.email.toLowerCase().endsWith("@outlook.com") &&
+                    !form.email.toLowerCase().endsWith("@yahoo.com"))
+                }
+                className="btn-primary w-full flex items-center justify-center gap-2 py-3.5 mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Submit Application <Send size={14} />
+                {loading ? "Submitting..." : "Submit Application"} <Send size={14} />
               </button>
             </form>
           </div>
         </div>
-      </section> */}
+      </section>
     </main>
   );
 }

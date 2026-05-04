@@ -415,6 +415,12 @@ export default function Home() {
                 <span className="text-xs font-semibold text-accent uppercase tracking-widest">
                   4 Weeks
                 </span>
+                <button
+                  disabled
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400 cursor-not-allowed"
+                >
+                  Apply Now <ArrowRight size={13} />
+                </button>
               </div>
             </div>
 
@@ -437,6 +443,13 @@ export default function Home() {
                 <span className="text-xs font-semibold text-accent uppercase tracking-widest">
                   60 Hours
                 </span>
+                <Link
+                  to="/internship#application-form"
+                  state={{ internshipType: "advance-php" }}
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand hover:text-accent transition-colors"
+                >
+                  Apply Now <ArrowRight size={13} />
+                </Link>
               </div>
             </div>
 
@@ -460,6 +473,12 @@ export default function Home() {
                 <span className="text-xs font-semibold text-accent uppercase tracking-widest">
                   3 Months
                 </span>
+                <button
+                  disabled
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400 cursor-not-allowed"
+                >
+                  Apply Now <ArrowRight size={13} />
+                </button>
               </div>
             </div>
 
@@ -483,31 +502,16 @@ export default function Home() {
                 <span className="text-xs font-semibold text-accent uppercase tracking-widest">
                   60 Hours
                 </span>
+                <Link
+                  to="/internship#application-form"
+                  state={{ internshipType: "django-web" }}
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand hover:text-accent transition-colors"
+                >
+                  Apply Now <ArrowRight size={13} />
+                </Link>
               </div>
             </div>
 
-            {/* UI Design with Figma card */}
-            <div className="border border-border rounded-sm p-8 flex flex-col gap-4 hover:border-brand transition-colors group bg-white">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="px-2 py-1 text-[0.65rem] font-bold uppercase tracking-widest text-green-600 bg-green-50 border border-green-200 rounded-sm">Active</span>
-                <span className="px-2 py-1 text-[0.65rem] font-bold uppercase tracking-widest text-brand border border-brand/20 bg-brand/5 rounded-sm">Online</span>
-              </div>
-              <h3 className="text-2xl font-black tracking-tight">
-                UI Design
-                <br />
-                with Figma
-              </h3>
-              <p className="text-muted text-sm leading-relaxed flex-1">
-                Master modern UI design using Figma — from wireframing and
-                layout planning to prototyping, components, and responsive
-                design for web &amp; mobile.
-              </p>
-              <div className="flex items-center justify-between pt-2 border-t border-border">
-                <span className="text-xs font-semibold text-accent uppercase tracking-widest">
-                  60 Hours
-                </span>
-              </div>
-            </div>
 
             {/* AI Tools & Automation card */}
             <div className="border border-border rounded-sm p-8 flex flex-col gap-4 hover:border-brand transition-colors group bg-white">
@@ -527,6 +531,13 @@ export default function Home() {
                 <span className="text-xs font-semibold text-accent uppercase tracking-widest">
                   60 Hours
                 </span>
+                <Link
+                  to="/internship#application-form"
+                  state={{ internshipType: "ai-tools" }}
+                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand hover:text-accent transition-colors"
+                >
+                  Apply Now <ArrowRight size={13} />
+                </Link>
               </div>
             </div>
           </div>

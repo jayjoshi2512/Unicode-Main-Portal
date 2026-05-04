@@ -12,6 +12,7 @@ import Accreditations from "@/pages/Accreditations";
 import NotFound from "@/pages/NotFound";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsConditions from "@/pages/TermsConditions";
+import Admin from "@/pages/Admin";
 
 /* Scroll to top on every route change */
 function ScrollToTop() {
@@ -35,12 +36,13 @@ function Layout() {
       "/accreditations",
       "/privacy-policy",
       "/terms-conditions",
+      "/admin",
     ].includes(pathname);
 
   return (
     <div className="flex flex-col min-h-screen">
       <ScrollToTop />
-      {!is404 && <Navbar />}
+      {!is404 && pathname !== "/admin" && <Navbar />}
       <div className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -52,6 +54,7 @@ function Layout() {
           <Route path="/accreditations" element={<Accreditations />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-conditions" element={<TermsConditions />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
