@@ -291,7 +291,7 @@ export default function About() {
               </p>
             </div>
             <div className="flex flex-col gap-1.5 text-sm text-white/60 shrink-0">
-              <span>Phone: +91 7874444005</span>
+              <span>Phone: +91 9723092721</span>
               <span>Email: contact@unicodetechnolab.com</span>
               <span>Email: consult@unicodetechnolab.com</span>
             </div>

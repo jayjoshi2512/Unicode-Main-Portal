@@ -11,8 +11,8 @@ const CONTACT_INFO = [
   {
     icon: Phone,
     label: "Phone",
-    lines: ["+91 7874444005"],
-    href: "tel:+917874444005",
+    lines: ["+91 9723092721"],
+    href: "tel:+919723092721",
   },
   {
     icon: Mail,
