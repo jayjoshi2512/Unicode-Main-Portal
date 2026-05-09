@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { X, ChevronLeft, ChevronRight, ZoomIn, FileText } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, FileText } from "lucide-react";
 
 const ACCREDITATIONS = [
   {
