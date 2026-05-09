@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Home", path: "/" },
@@ -56,7 +56,6 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto container-pad flex items-center justify-between">
           {/* ── Logo ── */}
           <NavLink to="/" className="flex items-center gap-2 select-none group">
-            <span className="w-2.5 h-2.5 rounded-sm bg-accent shrink-0 transition-transform duration-300 group-hover:rotate-45" />
             <span
               className={[
                 "text-lg font-black tracking-tight transition-colors duration-200",
@@ -90,17 +89,18 @@ export default function Navbar() {
           </nav>
 
           {/* ── Desktop CTA ── */}
-          <NavLink
-            to="/internship#application-form"
+          {/* <NavLink
+            to="/contact"
             className={[
-              "group hidden md:inline-flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-sm transition-all",
-              !scrolled
-                ? "bg-accent text-ink hover:opacity-90"
-                : "bg-accent text-ink hover:opacity-90",
-            ].join(" ")}
+              "hidden md:inline-flex btn-primary text-xs py-2.5 px-5",
+              !scrolled &&
+                "bg-white! text-brand! border-white! hover:bg-white/90!",
+            ]
+              .filter(Boolean)
+              .join(" ")}
           >
-            Apply Now <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-          </NavLink>
+            Get Started
+          </NavLink> */}
 
           {/* ── Mobile Hamburger ── */}
           <button
@@ -154,13 +154,13 @@ export default function Navbar() {
             </NavLink>
           ))}
 
-          <NavLink
-            to="/internship#application-form"
+          {/* <NavLink
+            to="/contact"
             onClick={() => setMenuOpen(false)}
-            className="group inline-flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest bg-accent text-ink px-6 py-3 rounded-sm hover:opacity-90 transition-opacity w-fit mt-4 animate-fade-up delay-600"
+            className="btn-ghost w-fit mt-4 animate-fade-up delay-600"
           >
-            Apply Now <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-          </NavLink>
+            Get Started
+          </NavLink> */}
         </nav>
 
         {/* Decorative corner text */}

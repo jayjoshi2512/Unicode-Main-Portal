@@ -31,7 +31,6 @@ export default function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-1 space-y-5">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-sm bg-accent" />
               <span className="text-xl font-black tracking-tight">Unicode</span>
             </div>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs">

@@ -3,12 +3,6 @@ import { X, ChevronLeft, ChevronRight, ZoomIn, FileText } from "lucide-react";
 
 const ACCREDITATIONS = [
   {
-    id: 4,
-    title: "Udyam Registration Certificate",
-    pdf: "/Accreditations/Print _ Udyam Registration Certificate.pdf",
-    category: "MSME",
-  },
-  {
     id: 1,
     title: "Sardar Vallabhbhai Patel National Service Award",
     image:
@@ -106,13 +100,6 @@ export default function Accreditations() {
     document.body.style.overflow = "hidden";
   };
 
-  const activeItem =
-    selectedIndex !== null ? filteredItems[selectedIndex] : null;
-  const activePdfViewerUrl = useMemo(() => {
-    if (!activeItem?.pdf) return "";
-    return `${activeItem.pdf}#toolbar=0&navpanes=0&statusbar=0&messages=0`;
-  }, [activeItem]);
-
   const closeModal = () => {
     setSelectedIndex(null);
     document.body.style.overflow = "";
@@ -150,6 +137,10 @@ export default function Accreditations() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedIndex, filteredItems.length]);
+
+  const activeItem =
+    selectedIndex !== null ? filteredItems[selectedIndex] : null;
+  // Note: PDFs removed — always display images or a placeholder.
 
   return (
     <main>
@@ -226,11 +217,6 @@ export default function Accreditations() {
                       </p>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-brand/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                    <div className="bg-white/10 p-3 rounded-full text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                      {item.pdf ? <FileText size={24} /> : <ZoomIn size={24} />}
-                    </div>
-                  </div>
                 </div>
                 <div className="p-5 flex-1 flex flex-col">
                   <span className="text-[10px] font-bold text-accent uppercase tracking-widest mb-2 block">
@@ -306,27 +292,21 @@ export default function Accreditations() {
           {/* Image Container */}
           <div className="max-w-6xl w-full h-full p-4 md:p-20 flex flex-col items-center justify-center pointer-events-none">
             <div className="relative w-full h-full flex flex-col items-center justify-center">
-              {activeItem?.pdf ? (
-                <div
-                  className="w-full h-[72vh] md:h-[76vh] bg-white rounded-sm shadow-2xl overflow-hidden pointer-events-auto animate-fade-up"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <iframe
-                    title={activeItem.title}
-                    src={activePdfViewerUrl}
-                    className="w-full h-full"
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-              ) : (
+              {activeItem?.image ? (
                 <img
                   key={selectedIndex}
-                  src={activeItem?.image}
-                  alt={activeItem?.title}
+                  src={activeItem.image}
+                  alt={activeItem.title}
                   className="max-w-full max-h-[70vh] object-contain rounded-sm shadow-2xl animate-fade-up pointer-events-auto"
                   onClick={(e) => e.stopPropagation()}
                 />
+              ) : (
+                <div className="w-full h-[60vh] md:h-[64vh] bg-white rounded-sm shadow-2xl flex items-center justify-center pointer-events-auto">
+                  <div className="text-center">
+                    <FileText size={40} className="mb-2 mx-auto text-muted" />
+                    <p className="text-sm text-muted">No image available</p>
+                  </div>
+                </div>
               )}
               <div className="mt-8 text-center animate-fade-up delay-100 max-w-2xl px-4 pointer-events-auto">
                 <h2 className="text-white text-xl md:text-2xl font-bold leading-tight">
