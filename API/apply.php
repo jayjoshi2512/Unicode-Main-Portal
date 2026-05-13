@@ -19,6 +19,36 @@ if (empty($internshipType) || empty($name) || empty($gender) || empty($email) ||
     sendJsonResponse(['success' => false, 'message' => 'All fields are required.'], 400);
 }
 
+$turnstileToken = trim($data['turnstileToken'] ?? '');
+
+if (empty($turnstileToken)) {
+    sendJsonResponse(['success' => false, 'message' => 'Bot verification token is missing.'], 400);
+}
+
+// Verify Turnstile token with Cloudflare
+$secretKey = '0x4AAAAAADOQDfx8GEXTjzLGQTKhlGzhUAU';
+$verifyUrl = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+$verifyData = [
+    'secret' => $secretKey,
+    'response' => $turnstileToken,
+    'remoteip' => $_SERVER['REMOTE_ADDR']
+];
+
+$options = [
+    'http' => [
+        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method'  => 'POST',
+        'content' => http_build_query($verifyData)
+    ]
+];
+$context  = stream_context_create($options);
+$response = file_get_contents($verifyUrl, false, $context);
+$responseData = json_decode($response, true);
+
+if (!$responseData || empty($responseData['success'])) {
+    sendJsonResponse(['success' => false, 'message' => 'Bot verification failed. Please try again.'], 400);
+}
+
 // Domain validation (backend)
 $emailLower = strtolower($email);
 if (!str_ends_with($emailLower, '@gmail.com') && !str_ends_with($emailLower, '@outlook.com') && !str_ends_with($emailLower, '@yahoo.com')) {

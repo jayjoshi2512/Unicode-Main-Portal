@@ -27,7 +27,6 @@ export default function Admin() {
   const [loadingAuth, setLoadingAuth] = useState(true);
 
   // Auth form states
-  const [authStep, setAuthStep] = useState<"email" | "otp">("email");
   const [otp, setOtp] = useState("");
   const [authError, setAuthError] = useState("");
   const [authLoading, setAuthLoading] = useState(false);
@@ -63,29 +62,7 @@ export default function Admin() {
     }
   };
 
-  const handleSendOtp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setAuthError("");
-    setAuthLoading(true);
-    try {
-      const res = await fetch(`${API_BASE}/admin_auth.php`, {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "send_otp" }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setAuthStep("otp");
-      } else {
-        setAuthError(data.message || "Failed to send OTP.");
-      }
-    } catch (err) {
-      setAuthError("Server error.");
-    } finally {
-      setAuthLoading(false);
-    }
-  };
+
 
   const handleVerifyOtp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -121,7 +98,6 @@ export default function Admin() {
         body: JSON.stringify({ action: "logout" }),
       });
       setIsAuthenticated(false);
-      setAuthStep("email");
       setOtp("");
     } catch (err) {
       console.error(err);
@@ -198,59 +174,35 @@ export default function Admin() {
             </div>
           )}
 
-          {authStep === "email" ? (
-            <form onSubmit={handleSendOtp} className="space-y-4">
-              <button
-                type="submit"
-                disabled={authLoading}
-                className="btn-primary w-full justify-center disabled:opacity-70"
-              >
-                {authLoading
-                  ? "Sending..."
-                  : "Send Verification Code to Admin Email"}
-              </button>
-            </form>
-          ) : (
-            <form onSubmit={handleVerifyOtp} className="space-y-4">
-              <div>
-                <label className="text-xs font-bold uppercase tracking-widest text-ink mb-1 block">
-                  Verification Code
-                </label>
-                <div className="relative">
-                  <Key
-                    className="absolute left-3 top-1/2 -translate-y-1/2 text-muted"
-                    size={16}
-                  />
-                  <input
-                    type="text"
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                    className="w-full pl-10 p-3 border border-border rounded-sm bg-surface focus:outline-none focus:border-brand tracking-widest text-center"
-                    placeholder="XXXXXX"
-                    required
-                    maxLength={6}
-                  />
-                </div>
-                <p className="text-xs text-muted mt-2 text-center">
-                  Code sent to Admin Email.{" "}
-                  <button
-                    type="button"
-                    onClick={() => setAuthStep("email")}
-                    className="text-brand hover:underline"
-                  >
-                    Resend Code
-                  </button>
-                </p>
+          <form onSubmit={handleVerifyOtp} className="space-y-4">
+            <div>
+              <label className="text-xs font-bold uppercase tracking-widest text-ink mb-1 block">
+                Verification Code
+              </label>
+              <div className="relative">
+                <Key
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-muted"
+                  size={16}
+                />
+                <input
+                  type="text"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                  className="w-full pl-10 p-3 border border-border rounded-sm bg-surface focus:outline-none focus:border-brand tracking-widest text-center"
+                  placeholder="XXXXXX"
+                  required
+                  maxLength={6}
+                />
               </div>
-              <button
-                type="submit"
-                disabled={authLoading}
-                className="btn-primary w-full justify-center disabled:opacity-70"
-              >
-                {authLoading ? "Verifying..." : "Verify & Login"}
-              </button>
-            </form>
-          )}
+            </div>
+            <button
+              type="submit"
+              disabled={authLoading}
+              className="btn-primary w-full justify-center disabled:opacity-70"
+            >
+              {authLoading ? "Verifying..." : "Verify & Login"}
+            </button>
+          </form>
         </div>
       </div>
     );

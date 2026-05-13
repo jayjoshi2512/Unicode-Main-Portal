@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from "lucide-react";
+import { Turnstile } from '@marsidev/react-turnstile';
 
 const CONTACT_INFO = [
   {
@@ -44,6 +45,9 @@ const initialForm = {
 export default function Contact() {
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [error, setError] = useState("");
+  const turnstileRef = useRef<any>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -58,9 +62,18 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Contact form:", form);
+    if (!turnstileToken) {
+      setError("Please complete the bot verification.");
+      return;
+    }
+    setError("");
+    console.log("Contact form:", { ...form, turnstileToken });
     setSubmitted(true);
     setForm(initialForm);
+    setTurnstileToken("");
+    if (turnstileRef.current) {
+      turnstileRef.current.reset();
+    }
     setTimeout(() => setSubmitted(false), 5000);
   };
 
@@ -151,6 +164,14 @@ export default function Contact() {
                 </div>
               )}
 
+              {error && (
+                <div className="mb-6 flex items-center gap-3 bg-red-50 border border-red-200 rounded-sm p-4">
+                  <p className="text-sm text-red-800 font-medium">
+                    {error}
+                  </p>
+                </div>
+              )}
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="field">
@@ -207,6 +228,15 @@ export default function Contact() {
                     placeholder="Write your message here..."
                     rows={6}
                     required
+                  />
+                </div>
+
+                <div className="flex justify-center mt-4">
+                  <Turnstile
+                    ref={turnstileRef}
+                    siteKey="0x4AAAAAADOQDWl3DFZ03kW0"
+                    onSuccess={(token) => setTurnstileToken(token)}
+                    onError={() => setError("Bot verification failed. Please try again.")}
                   />
                 </div>
 

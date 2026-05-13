@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { CheckCircle, GraduationCap, Users, Award, Clock, ArrowRight, Send } from "lucide-react";
+import { Turnstile } from '@marsidev/react-turnstile';
 import InternshipTable from "@/components/internship/InternshipTable";
 import {
   INTERNSHIP_COLUMNS,
@@ -145,6 +146,8 @@ export default function Internship() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<any>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -179,12 +182,17 @@ export default function Internship() {
       return;
     }
 
+    if (!turnstileToken) {
+      setError("Please complete the bot verification.");
+      return;
+    }
+
     setLoading(true);
     try {
       const res = await fetch("https://www.internship.unicodetechnolab.com/API/apply.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, turnstileToken }),
       });
       const data = await res.json();
       if (data.success) {
@@ -198,8 +206,15 @@ export default function Internship() {
           college: "",
           city: "",
         });
+        setTurnstileToken("");
+        if (turnstileRef.current) {
+          turnstileRef.current.reset();
+        }
       } else {
         setError(data.message || "Something went wrong.");
+        if (turnstileRef.current) {
+          turnstileRef.current.reset();
+        }
       }
     } catch (err) {
       setError("Failed to submit application.");
@@ -540,6 +555,15 @@ export default function Internship() {
                     required
                   />
                 </div>
+              </div>
+
+              <div className="flex justify-center mt-4">
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey="0x4AAAAAADOQDWl3DFZ03kW0"
+                  onSuccess={(token) => setTurnstileToken(token)}
+                  onError={() => setError("Bot verification failed. Please try again.")}
+                />
               </div>
 
               <button
