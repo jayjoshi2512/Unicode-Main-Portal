@@ -962,5 +962,551 @@ export const INTERNSHIP_RECORDS: InternshipRecord[] = [
     "Course & Semester": "Degree Sem-8 Internship",
     "Duration": "120 Days",
     "College/University": "Government Engg College, Rajkot"
+  },
+  {
+    "No.": "137",
+    "Name of Student": "Ruparel Heet Dilipbhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "138",
+    "Name of Student": "Odedara Bhima Nathabhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "139",
+    "Name of Student": "Sundavadra Pooja Virambhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "140",
+    "Name of Student": "Odedra Jiya Shaileshbhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "141",
+    "Name of Student": "Bharkhda Aaryan Pareshbhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "142",
+    "Name of Student": "Odedara Diya Shaileshbhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "143",
+    "Name of Student": "Krinshi Shantilal Kotiya",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "144",
+    "Name of Student": "Khistariya Vivek Dilipbhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "DR. V. R. Godhania College Of Engineering & Technology, Porbandar"
+  },
+  {
+    "No.": "145",
+    "Name of Student": "Gareja Jay Arajanbhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "146",
+    "Name of Student": "Satyam Hitesh Gohel",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "DR. V. R. Godhania College Of Engineering & Technology, Porbandar"
+  },
+  {
+    "No.": "147",
+    "Name of Student": "Vadhiya Rinkal Nathabhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "148",
+    "Name of Student": "Dharmik Ketanbhai Parmar",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "DR. V. R. Godhania College Of Engineering & Technology, Porbandar"
+  },
+  {
+    "No.": "149",
+    "Name of Student": "Odedara Bharti Meraman",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "150",
+    "Name of Student": "Vaja Pratham Rajeshbhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "DR. V. R. Godhania College Of Engineering & Technology, Porbandar"
+  },
+  {
+    "No.": "151",
+    "Name of Student": "Kavya Jawaharbhai Maheta",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "DR. V. R. Godhania College Of Engineering & Technology, Porbandar"
+  },
+  {
+    "No.": "152",
+    "Name of Student": "Joshi Payal Rambhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "DR. V. R. Godhania College Of Engineering & Technology, Porbandar"
+  },
+  {
+    "No.": "153",
+    "Name of Student": "Joshi Radhika Pramodbhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "DR. V. R. Godhania College Of Engineering & Technology, Porbandar"
+  },
+  {
+    "No.": "154",
+    "Name of Student": "Modha Dhruvi Kamleshbhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "155",
+    "Name of Student": "Dhruvi Jayendrabhai Jethwa",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "156",
+    "Name of Student": "Raj Munja Bapodara",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "DR. V. R. Godhania College Of Engineering & Technology, Porbandar"
+  },
+  {
+    "No.": "157",
+    "Name of Student": "Nanera Krish Bharat",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "DR. V. R. Godhania College Of Engineering & Technology, Porbandar"
+  },
+  {
+    "No.": "158",
+    "Name of Student": "Ulva Bhavin Sajan",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "159",
+    "Name of Student": "Ratiya Karan Jivabhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "160",
+    "Name of Student": "Yash Rajeshbhai Shingadiya",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "DR. V. R. Godhania College Of Engineering & Technology, Porbandar"
+  },
+  {
+    "No.": "161",
+    "Name of Student": "Keshwala Dhruv Girish",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "DR. V. R. Godhania College Of Engineering & Technology, Porbandar"
+  },
+  {
+    "No.": "162",
+    "Name of Student": "Chavda Nitanshi Dashrathbhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "DR. V. R. Godhania College Of Engineering & Technology, Porbandar"
+  },
+  {
+    "No.": "163",
+    "Name of Student": "Gohel Naitik Chirag",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "164",
+    "Name of Student": "Kotecha Renish Samirbhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "165",
+    "Name of Student": "Khunti Uday Savdas",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "166",
+    "Name of Student": "Khistariya Ronak Babu",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "167",
+    "Name of Student": "Chauhan Divyesh Bhimabhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Porbandar, Porbandar"
+  },
+  {
+    "No.": "168",
+    "Name of Student": "Dave Pranav Kishorbhai",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "30 days",
+    "College/University": "GSFC University, Vadodara"
+  },
+  {
+    "No.": "169",
+    "Name of Student": "Mohit Dhanji Kotiya",
+    "Course & Semester": "Diploma in Computer Engineering",
+    "Duration": "30 days",
+    "College/University": "GSFC University, Vadodara"
+  },
+  {
+    "No.": "170",
+    "Name of Student": "Ihit Chandresh Joshi",
+    "Course & Semester": "B.Tech. in Computer Science & Design",
+    "Duration": "15 days",
+    "College/University": "G. H. Patel college of Engineering and Technology, Anand"
+  },
+  {
+    "No.": "171",
+    "Name of Student": "Prajapati Devarsh Bharatbhai",
+    "Course & Semester": "Diploma in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Vadnagar"
+  },
+  {
+    "No.": "172",
+    "Name of Student": "Chavda Parth",
+    "Course & Semester": "Diploma in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Porbandar"
+  },
+  {
+    "No.": "173",
+    "Name of Student": "Senma Chahat Kanubhai",
+    "Course & Semester": "Diploma in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Vadnagar"
+  },
+  {
+    "No.": "174",
+    "Name of Student": "Manus Patel",
+    "Course & Semester": "Diploma in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Vadnagar"
+  },
+  {
+    "No.": "175",
+    "Name of Student": "Patel Bhagykumar Sanjaybhai",
+    "Course & Semester": "Diploma in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Vadnagar"
+  },
+  {
+    "No.": "176",
+    "Name of Student": "Ma.Ayan Imranali Saiyad",
+    "Course & Semester": "Diploma in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Kapadwanj"
+  },
+  {
+    "No.": "177",
+    "Name of Student": "Prajapati Devanshkumar Lalabhai",
+    "Course & Semester": "Diploma in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Gandhinagar"
+  },
+  {
+    "No.": "178",
+    "Name of Student": "Sumit Pandit",
+    "Course & Semester": "B.Tech. in Computer Science & Design",
+    "Duration": "15 days",
+    "College/University": "DR. V. R. Godhania College Of Engineering & Technology, Porbandar"
+  },
+  {
+    "No.": "179",
+    "Name of Student": "Majithiya Jal Anandbhai",
+    "Course & Semester": "B.Tech. in Computer Science & Design",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Porbandar"
+  },
+  {
+    "No.": "180",
+    "Name of Student": "Roshni Dineshbhai Palas",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "181",
+    "Name of Student": "Jainish Patel",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "182",
+    "Name of Student": "Patel Krupa Sagarbhai",
+    "Course & Semester": "B.Tech. in Computer Science & Design",
+    "Duration": "15 days",
+    "College/University": "Government engineering College modasa, Ahmedabad"
+  },
+  {
+    "No.": "183",
+    "Name of Student": "Raj Deepakkumar Parmar",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Modasa"
+  },
+  {
+    "No.": "184",
+    "Name of Student": "Yadav Ashish Ramakant",
+    "Course & Semester": "B.Tech. in Computer Science & Design",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "185",
+    "Name of Student": "Prince Yadav",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "186",
+    "Name of Student": "Dholariya Aarju Arvindbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Modasa"
+  },
+  {
+    "No.": "187",
+    "Name of Student": "Patel Kashish",
+    "Course & Semester": "B.Tech. in Computer Science & Design",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahemdabad"
+  },
+  {
+    "No.": "188",
+    "Name of Student": "Abdulmajid Ansari",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "189",
+    "Name of Student": "Kacha Hiral Nileshbhai",
+    "Course & Semester": "B.Tech. in Computer Science & Design",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, JAMNAGAR"
+  },
+  {
+    "No.": "190",
+    "Name of Student": "Krishna Vala",
+    "Course & Semester": "BE in information and communication technology",
+    "Duration": "15 days",
+    "College/University": "Government engineering college Bhavnagar, Bhavnagar"
+  },
+  {
+    "No.": "191",
+    "Name of Student": "Tirth Parmar",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "192",
+    "Name of Student": "Sanpara Urvashi Niteshbhai",
+    "Course & Semester": "BE in information and communication technology",
+    "Duration": "15 days",
+    "College/University": "Government engineering college Bhavnagar, Bhavnagar"
+  },
+  {
+    "No.": "193",
+    "Name of Student": "Patel Harshil Maheshbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "194",
+    "Name of Student": "Rathod Krishnaben Dilipbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "195",
+    "Name of Student": "Joshi Meet Rajeshbhai",
+    "Course & Semester": "B.Tech. in Computer Science & Design",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, JAMNAGAR"
+  },
+  {
+    "No.": "196",
+    "Name of Student": "Parmar Dhruvil Ashokbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "197",
+    "Name of Student": "Vala Kinjal Bharatbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "198",
+    "Name of Student": "Chavda Yashvi Pravinbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "199",
+    "Name of Student": "Gohil Darshan Kiritbhai",
+    "Course & Semester": "B.Tech. in Computer Science & Design",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, JAMNAGAR"
+  },
+  {
+    "No.": "200",
+    "Name of Student": "Prajapati Mahi Jayeshbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Vadnagar"
+  },
+  {
+    "No.": "201",
+    "Name of Student": "Makwana Tirth Rameshbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Vadnagar"
+  },
+  {
+    "No.": "202",
+    "Name of Student": "Solanki Hetvi Nileshbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Vadnagar"
+  },
+  {
+    "No.": "203",
+    "Name of Student": "Jadeja Yuvraj Vikramsinh",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Kapadwanj"
+  },
+  {
+    "No.": "204",
+    "Name of Student": "Baraiya Riya Maheshbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, JAMNAGAR"
+  },
+  {
+    "No.": "205",
+    "Name of Student": "Rathod Devansh Arvindbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "206",
+    "Name of Student": "Patel Krish Ketanbhai",
+    "Course & Semester": "B.Tech. in Computer Science & Design",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "207",
+    "Name of Student": "Chauhan Nidhi Rajendrabhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Vadnagar"
+  },
+  {
+    "No.": "208",
+    "Name of Student": "Khatri Parth Dineshbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Vadnagar"
+  },
+  {
+    "No.": "209",
+    "Name of Student": "Vaghela Dhruvi Mukeshbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Vadnagar"
+  },
+  {
+    "No.": "210",
+    "Name of Student": "Parmar Jaydeep Bharatbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Polytechnic Gandhinagar, Kapadwanj"
+  },
+  {
+    "No.": "211",
+    "Name of Student": "Mistry Riddhi Pareshbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "212",
+    "Name of Student": "Sodha Harsh Rajubhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "213",
+    "Name of Student": "Desai Janvi Hiteshbhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
+  },
+  {
+    "No.": "214",
+    "Name of Student": "Pandya Niyati Sanjaybhai",
+    "Course & Semester": "B.E in Information Technology",
+    "Duration": "15 days",
+    "College/University": "Government Engineering College Modasa, Ahmedabad"
   }
 ];
