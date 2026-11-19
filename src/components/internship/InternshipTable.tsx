@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { ArrowUpDown, ChevronLeft, ChevronRight, Search } from "lucide-react";
+import { useMemo, useState, useEffect } from "react";
+import { ArrowUpDown, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search } from "lucide-react";
 import type { InternshipRecord } from "@/data/internshipRecords";
 
 interface InternshipTableProps {
@@ -8,7 +8,6 @@ interface InternshipTableProps {
   pageSize?: number;
 }
 
-type PageToken = number | "start-ellipsis" | "end-ellipsis";
 type SortOption =
   | "default"
   | "course-asc"
@@ -32,31 +31,6 @@ const SORT_OPTIONS: Array<{ value: SortOption; label: string }> = [
   { value: "college-asc", label: "College/University (A-Z)" },
   { value: "college-desc", label: "College/University (Z-A)" },
 ];
-
-function buildPageTokens(totalPages: number, currentPage: number): PageToken[] {
-  if (totalPages <= 5) {
-    return Array.from({ length: totalPages }, (_, index) => index);
-  }
-
-  const tokens: PageToken[] = [0];
-  const start = Math.max(1, currentPage - 1);
-  const end = Math.min(totalPages - 2, currentPage + 1);
-
-  if (start > 1) {
-    tokens.push("start-ellipsis");
-  }
-
-  for (let page = start; page <= end; page += 1) {
-    tokens.push(page);
-  }
-
-  if (end < totalPages - 2) {
-    tokens.push("end-ellipsis");
-  }
-
-  tokens.push(totalPages - 1);
-  return tokens;
-}
 
 function compareText(left: string, right: string) {
   return left.localeCompare(right, undefined, {
@@ -99,6 +73,23 @@ export default function InternshipTable({
   const [page, setPage] = useState(0);
   const [query, setQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("default");
+  const [jumpPage, setJumpPage] = useState("1");
+
+  useEffect(() => {
+    setJumpPage(String(page + 1));
+  }, [page]);
+
+  const handleJumpSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const p = parseInt(jumpPage, 10);
+    if (!isNaN(p)) {
+      const target = Math.min(Math.max(1, p), totalPages) - 1;
+      setPage(target);
+      setJumpPage(String(target + 1));
+    } else {
+      setJumpPage(String(page + 1));
+    }
+  };
 
   const safePageSize = pageSize > 0 ? pageSize : DEFAULT_PAGE_SIZE;
   const filteredRows = useMemo(() => {
@@ -176,11 +167,6 @@ export default function InternshipTable({
   const paginatedRows = useMemo(
     () => orderedRows.slice(startIndex, endIndex),
     [orderedRows, startIndex, endIndex],
-  );
-
-  const pageTokens = useMemo(
-    () => buildPageTokens(totalPages, currentPage),
-    [totalPages, currentPage],
   );
 
   const hasRows = totalRows > 0;
@@ -313,64 +299,78 @@ export default function InternshipTable({
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+          {/* First Button */}
+          <button
+            type="button"
+            onClick={() => setPage(0)}
+            disabled={currentPage === 0}
+            className="h-9 px-2.5 inline-flex items-center gap-1 border border-border rounded-sm text-xs font-semibold uppercase tracking-wide text-ink bg-white hover:border-brand hover:text-brand transition-colors cursor-pointer disabled:cursor-not-allowed disabled:opacity-40"
+            aria-label="Go to first page"
+          >
+            <ChevronsLeft size={14} />
+            <span className="hidden sm:inline">First</span>
+          </button>
+
+          {/* Prev Button */}
           <button
             type="button"
             onClick={() => setPage(Math.max(currentPage - 1, 0))}
             disabled={currentPage === 0}
-            className="h-9 px-3 inline-flex items-center gap-1.5 border border-border rounded-sm text-xs font-semibold uppercase tracking-wide text-ink hover:border-brand hover:text-brand transition-colors disabled:cursor-not-allowed disabled:opacity-40"
+            className="h-9 px-2.5 inline-flex items-center gap-1 border border-border rounded-sm text-xs font-semibold uppercase tracking-wide text-ink bg-white hover:border-brand hover:text-brand transition-colors cursor-pointer disabled:cursor-not-allowed disabled:opacity-40"
             aria-label="Go to previous page"
           >
-            <ChevronLeft size={14} /> Prev
+            <ChevronLeft size={14} />
+            <span className="hidden sm:inline">Prev</span>
           </button>
 
-          <div className="hidden sm:flex items-center gap-1">
-            {pageTokens.map((token, tokenIndex) => {
-              if (typeof token !== "number") {
-                return (
-                  <span
-                    key={`${token}-${tokenIndex}`}
-                    className="w-9 text-center text-sm text-muted"
-                  >
-                    ...
-                  </span>
-                );
-              }
+          {/* Manual Jump Input */}
+          <form onSubmit={handleJumpSubmit} className="flex items-center gap-1 px-1">
+            <span className="text-xs text-muted font-medium">Page</span>
+            <input
+              type="number"
+              min={1}
+              max={totalPages}
+              value={jumpPage}
+              onChange={(e) => setJumpPage(e.target.value)}
+              onBlur={() => {
+                const p = parseInt(jumpPage, 10);
+                if (!isNaN(p)) {
+                  const target = Math.min(Math.max(1, p), totalPages) - 1;
+                  setPage(target);
+                  setJumpPage(String(target + 1));
+                } else {
+                  setJumpPage(String(currentPage + 1));
+                }
+              }}
+              className="w-12 h-9 text-center font-bold text-xs text-ink bg-white border border-border rounded-sm focus:outline-none focus:border-brand"
+              title="Type a page number and press Enter"
+            />
+            <span className="text-xs text-muted font-medium">of {totalPages}</span>
+          </form>
 
-              const isActive = token === currentPage;
-
-              return (
-                <button
-                  key={token}
-                  type="button"
-                  onClick={() => setPage(token)}
-                  aria-label={`Go to page ${token + 1}`}
-                  aria-current={isActive ? "page" : undefined}
-                  className={[
-                    "w-9 h-9 border rounded-sm text-xs font-semibold transition-colors",
-                    isActive
-                      ? "border-brand bg-brand text-white"
-                      : "border-border text-ink hover:border-brand hover:text-brand",
-                  ].join(" ")}
-                >
-                  {token + 1}
-                </button>
-              );
-            })}
-          </div>
-
-          <p className="sm:hidden text-xs font-semibold text-ink min-w-18 text-center">
-            {currentPage + 1} / {totalPages}
-          </p>
-
+          {/* Next Button */}
           <button
             type="button"
             onClick={() => setPage(Math.min(currentPage + 1, totalPages - 1))}
             disabled={currentPage === totalPages - 1 || !hasRows}
-            className="h-9 px-3 inline-flex items-center gap-1.5 border border-border rounded-sm text-xs font-semibold uppercase tracking-wide text-ink hover:border-brand hover:text-brand transition-colors disabled:cursor-not-allowed disabled:opacity-40"
+            className="h-9 px-2.5 inline-flex items-center gap-1 border border-border rounded-sm text-xs font-semibold uppercase tracking-wide text-ink bg-white hover:border-brand hover:text-brand transition-colors cursor-pointer disabled:cursor-not-allowed disabled:opacity-40"
             aria-label="Go to next page"
           >
-            Next <ChevronRight size={14} />
+            <span className="hidden sm:inline">Next</span>
+            <ChevronRight size={14} />
+          </button>
+
+          {/* Last Button */}
+          <button
+            type="button"
+            onClick={() => setPage(totalPages - 1)}
+            disabled={currentPage === totalPages - 1 || !hasRows}
+            className="h-9 px-2.5 inline-flex items-center gap-1 border border-border rounded-sm text-xs font-semibold uppercase tracking-wide text-ink bg-white hover:border-brand hover:text-brand transition-colors cursor-pointer disabled:cursor-not-allowed disabled:opacity-40"
+            aria-label="Go to last page"
+          >
+            <span className="hidden sm:inline">Last</span>
+            <ChevronsRight size={14} />
           </button>
         </div>
       </div>

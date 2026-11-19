@@ -70,6 +70,33 @@ try {
         otp VARCHAR(10) NOT NULL,
         expires_at DATETIME NOT NULL
     )");
+
+    $pdo->exec("CREATE TABLE IF NOT EXISTS internship_courses (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        slug VARCHAR(100) NOT NULL UNIQUE,
+        title VARCHAR(255) NOT NULL,
+        duration_value INT NOT NULL DEFAULT 1,
+        duration_unit VARCHAR(20) NOT NULL DEFAULT 'Weeks',
+        duration VARCHAR(100) NOT NULL,
+        mode VARCHAR(50) NOT NULL DEFAULT 'On-site',
+        is_active TINYINT(1) NOT NULL DEFAULT 1,
+        description LONGTEXT DEFAULT NULL,
+        curriculum LONGTEXT DEFAULT NULL,
+        sort_order INT NOT NULL DEFAULT 0,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    )");
+
+    $pdo->exec("CREATE TABLE IF NOT EXISTS registered_interns (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        student_name VARCHAR(255) NOT NULL,
+        course_semester VARCHAR(255) NOT NULL,
+        duration VARCHAR(100) NOT NULL,
+        college VARCHAR(255) NOT NULL,
+        sort_order INT NOT NULL DEFAULT 0,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    )");
 } catch (PDOException $e) {
     // In production, log error instead of displaying
     http_response_code(500);

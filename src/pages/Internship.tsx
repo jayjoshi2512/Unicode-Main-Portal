@@ -8,14 +8,24 @@ import {
   INTERNSHIP_RECORDS,
 } from "@/data/internshipRecords";
 
-const PROGRAMS = [
+interface Program {
+  id: string;
+  title: string;
+  duration: string;
+  isActive: boolean;
+  mode: string;
+  desc?: string;
+  curriculum: string[];
+}
+
+const DEFAULT_PROGRAMS: Program[] = [
   {
     id: "html-tailwind",
     title: "HTML5 & Tailwind CSS Fundamentals",
     duration: "4 Weeks",
     isActive: false,
     mode: "On-site",
-    // desc: "Learn modern web development with HTML5 and Tailwind CSS. Master layout, responsive design, and creating beautiful interfaces.",
+    desc: "<p>Learn modern web development with HTML5 and Tailwind CSS. Master layout, responsive design, and creating beautiful interfaces.</p>",
     curriculum: [
       "HTML5 Fundamentals",
       "HTML5 Layout & Structure",
@@ -31,7 +41,7 @@ const PROGRAMS = [
     duration: "60 Hours",
     isActive: true,
     mode: "On-site",
-    // desc: "Master advanced PHP techniques with real-world applications — API integration, payment gateways, and dynamic content generation.(Diploma Students)",
+    desc: "<p>Master advanced PHP techniques with real-world applications — API integration, payment gateways, and dynamic content generation. (Diploma Students)</p>",
     curriculum: [
       "Regular expressions",
       "AJAX & Async patterns",
@@ -51,7 +61,7 @@ const PROGRAMS = [
     duration: "3 Months",
     isActive: false,
     mode: "On-site",
-    // desc: "A comprehensive full-stack internship covering MongoDB, Express.js, React.js, and Node.js — build and deploy production-ready web applications.",
+    desc: "<p>A comprehensive full-stack internship covering MongoDB, Express.js, React.js, and Node.js — build and deploy production-ready web applications.</p>",
     curriculum: [
       "Node.js & Express.js fundamentals",
       "MongoDB & Mongoose ODM",
@@ -69,7 +79,7 @@ const PROGRAMS = [
     duration: "60 Hours",
     isActive: true,
     mode: "Online",
-    // desc: "Master backend development with Django framework — learn project setup, ORM, authentication, and build complete web applications.",
+    desc: "<p>Master backend development with Django framework — learn project setup, ORM, authentication, and build complete web applications.</p>",
     curriculum: [
       "Introduction to Django",
       "Django project setup and app creation",
@@ -95,6 +105,7 @@ const PROGRAMS = [
     duration: "60 Hours",
     isActive: true,
     mode: "Online",
+    desc: "<p>Explore hands-on AI tools, prompt engineering, and workflow automation tailored for real-world business and technical use cases.</p>",
     curriculum: [
       "Introduction to AI, Automation, and SaaS",
       "Real-world AI use cases (India-focused)",
@@ -134,6 +145,8 @@ const BENEFITS = [
 
 export default function Internship() {
   const location = useLocation();
+  const [programs, setPrograms] = useState<Program[]>(DEFAULT_PROGRAMS);
+  const [placementRecords, setPlacementRecords] = useState(INTERNSHIP_RECORDS);
   const [form, setForm] = useState({
     internshipType: location.state?.internshipType || "",
     name: "",
@@ -151,6 +164,45 @@ export default function Internship() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    // Fetch dynamic programs from backend API
+    const fetchPrograms = async () => {
+      try {
+        const res = await fetch("https://internship.unicodetechnolab.com/API/get_courses.php");
+        const data = await res.json();
+        if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+          setPrograms(
+            data.data.map((c: any) => ({
+              id: c.slug || String(c.id),
+              title: c.title,
+              duration: c.duration,
+              isActive: Boolean(c.is_active),
+              mode: c.mode || "On-site",
+              desc: c.description || "",
+              curriculum: c.curriculum || [],
+            }))
+          );
+        }
+      } catch (err) {
+        console.warn("Could not fetch remote programs, using defaults.", err);
+      }
+    };
+
+    // Fetch dynamic registered interns (placement records)
+    const fetchRegisteredInterns = async () => {
+      try {
+        const res = await fetch("https://internship.unicodetechnolab.com/API/get_registered_interns.php");
+        const data = await res.json();
+        if (data.success && Array.isArray(data.data) && data.data.length > 0) {
+          setPlacementRecords(data.data);
+        }
+      } catch (err) {
+        console.warn("Could not fetch remote registered interns, using defaults.", err);
+      }
+    };
+
+    fetchPrograms();
+    fetchRegisteredInterns();
   }, []);
 
   useEffect(() => {
@@ -265,7 +317,7 @@ export default function Internship() {
           </div>
 
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
-            {PROGRAMS.map((prog) => (
+            {programs.map((prog) => (
               <div
                 key={prog.id}
                 className={[
@@ -294,13 +346,12 @@ export default function Internship() {
                   >
                     {prog.title}
                   </h3>
-                  <p
-                    className={["text-sm leading-relaxed mb-6 text-muted"].join(
-                      " ",
-                    )}
-                  >
-                    {/* {prog.desc} */}
-                  </p>
+                  {prog.desc && (
+                    <div
+                      className="text-sm leading-relaxed mb-6 text-muted prose prose-sm max-w-none"
+                      dangerouslySetInnerHTML={{ __html: prog.desc }}
+                    />
+                  )}
 
                   {/* Curriculum */}
                   <ul className="space-y-2 mb-7">
@@ -347,7 +398,7 @@ export default function Internship() {
 
             <InternshipTable
               columns={INTERNSHIP_COLUMNS}
-              rows={INTERNSHIP_RECORDS}
+              rows={placementRecords}
               pageSize={10}
             />
           </div>
@@ -415,7 +466,7 @@ export default function Internship() {
                   Internship Program
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {PROGRAMS.filter(p => p.isActive).map((prog, index) => (
+                  {programs.filter(p => p.isActive).map((prog, index) => (
                     <label
                       key={prog.id}
                       className={[
